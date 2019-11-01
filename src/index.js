@@ -6,30 +6,24 @@ const Post = require('./model/post');
 const app = express();
 
 //callback - quando get /posts -> devovle
-app.get(`/posts`,function(request, response){
-
-  console.log(request.query)
-  Post.find(
-    function(err,posts){
-      if(err ==null){
-        response.send(posts);
-      }else{
-        response.status(412);
-        response.send(err);
-      }
-    }
-  );
-
-
-
-
-
+app.get(`/posts`, function(request, response) {
+    console.log(request.query)
+    Post.find(
+        function(err, posts) {
+            if (err == null) {
+                response.send(posts);
+            } else {
+                response.status(412);
+                response.send(err);
+            }
+        }
+    );
 })
 
 
 //aqui os endpoints ja devem estar configurados!
-app.listen('80', function(){
-  console.log('ESTOU VIVO NO EXPRESS');
+const port = process.env.PORT || '80'
+
+app.listen(port, function() {
+    console.log('ESTOU VIVO NO EXPRESS');
 })
-
-
